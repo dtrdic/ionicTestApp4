@@ -1,0 +1,40 @@
+workflows:
+  
+  ionic-capacitor-android-workflow:
+    name: Ionic Capacitor Android Workflow
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      android_signing:
+        - davidKeystore
+      groups:
+        - google_play_credentials
+      vars:
+        PACKAGE_NAME: "io.codemagic.dtrdic8"
+    scripts:
+      - name: Install npm dependencies for Ionic project
+        script: |
+          npm install
+      - name: Set up local.properties
+        script: | 
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Update dependencies and copy web assets to native project
+        script: | 
+          npx cap sync
+      - name: Build Android release
+        script: | 
+          cd android
+          ./gradlew assembleRelease
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - david@nevercode.io
+        notify:
+          success: true
+          failure: false
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        submit_as_draft: true

@@ -1,5 +1,6 @@
-package ionic.ionictest4;
+package io.codemagic.dtrdic8;
 
 import com.getcapacitor.BridgeActivity;
 
-public class MainActivity extends BridgeActivity {}
+public class MainActivity extends BridgeActivity {
+}
