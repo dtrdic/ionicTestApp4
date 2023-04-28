@@ -23,7 +23,7 @@ workflows:
           npx cap sync
       - name: Build Android release
         script: | 
-          cd android
+          cd $CM_BUILD_DIR/android
           ./gradlew assembleRelease
     artifacts:
       - android/app/build/outputs/**/*.aab
