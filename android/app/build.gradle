@@ -9,25 +9,24 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        aaptOptions {
-             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
-             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
-            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+
+    }
+    signingConfigs {
+
+        release {
+                if (System.getenv()["CI"]) {
+                    storeFile file('/tmp/keystore.keystore')
+                    storePassword System.getenv()['CM_KEYSTORE_PASSWORD']
+                    keyAlias System.getenv()['CM_KEY_ALIAS_USERNAME']
+                    keyPassword System.getenv()['CM_KEY_ALIAS_PASSWORD']
+                } else {
+                    storeFile file("../../keys/codemagic.keystore")
+                    storePassword System.getenv()['CM_KEYSTORE_PASSWORD']
+                    keyAlias System.getenv()['CM_KEY_ALIAS_USERNAME']
+                    keyPassword System.getenv()['CM_KEY_ALIAS_PASSWORD']
+                }
         }
     }
-    release {
-        if (System.getenv()["CI"]) {
-            storeFile file('/tmp/keystore.keystore')
-            storePassword System.getenv()['CM_KEYSTORE_PASSWORD']
-            keyAlias System.getenv()['CM_KEY_ALIAS_USERNAME']
-            keyPassword System.getenv()['CM_KEY_ALIAS_PASSWORD']
-        } else {
-            storeFile file("../../keys/codemagic.keystore")
-            storePassword System.getenv()['CM_KEYSTORE_PASSWORD']
-            keyAlias System.getenv()['CM_KEY_ALIAS_USERNAME']
-            keyPassword System.getenv()['CM_KEY_ALIAS_PASSWORD']
-        }
-}
 
     buildTypes {
         release {
