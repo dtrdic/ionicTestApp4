@@ -39,7 +39,6 @@ workflows:
             -PversionName=1.0.$UPDATED_BUILD_NUMBER
     artifacts:
       - android/app/build/outputs/**/*.aab
-      - android/app/build/outputs/**/*.apk
     publishing:
       email:
         recipients:
