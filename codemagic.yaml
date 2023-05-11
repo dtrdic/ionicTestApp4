@@ -15,7 +15,7 @@ workflows:
               - pull_request
               - push
           branch_patterns:
-          - pattern: "main" 
+          - pattern: "*" 
             include: true
             source: false
 
