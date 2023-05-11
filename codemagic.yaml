@@ -1,10 +1,8 @@
 workflows:
-  
   ionic-capacitor-android-workflow:
     name: Ionic Capacitor Android Workflow
     max_build_duration: 120
     instance_type: mac_mini_m1
-    # adding this comment for testing
     environment:
       android_signing:
         - davidKeystore
@@ -20,8 +18,7 @@ workflows:
           - pattern: "main" 
             include: true
             source: false
-          - pattern: "dev"
-            include: true
+
     scripts:
       - name: Install npm dependencies for Ionic project
         script: |
