@@ -14,11 +14,11 @@ workflows:
           events:
               - pull_request
               - push
+              - tag
           branch_patterns:
           - pattern: "test1" 
             include: true
             source: false
-
     scripts:
       - name: Install npm dependencies for Ionic project
         script: |
@@ -48,6 +48,15 @@ workflows:
     artifacts:
       - android/app/build/outputs/**/*.aab
     publishing:
+      scripts:
+        - name: Report build status
+          script: | 
+            if [  -f ~/SUCCESS ] ; then
+              - git tag -a v1.44 -m "my version 1.44"
+              - git push --tags
+            else
+              # build failed
+            fi
       email:
         recipients:
           - david@nevercode.io
