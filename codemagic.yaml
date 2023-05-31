@@ -48,14 +48,6 @@ workflows:
     artifacts:
       - android/app/build/outputs/**/*.aab
     publishing:
-      scripts:
-        - name: Report build status
-          script: | 
-            if [  -f ~/SUCCESS ] ; then
-              - git tag -a v1.44 -m "my version 1.44"
-              - git push --tags
-            else
-              # build failed
       email:
         recipients:
           - david@nevercode.io
@@ -66,3 +58,12 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
+      scripts:
+        - name: Report build status
+          script: | 
+            if [  -f ~/SUCCESS ] ; then
+              - git tag -a v1.44 -m "my version 1.44"
+              - git push --tags
+            else
+              # build failed
+            fi

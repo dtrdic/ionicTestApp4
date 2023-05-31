@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.appdistribution'
 
 // used only for local testing
 def keystoreProperties = new Properties()
