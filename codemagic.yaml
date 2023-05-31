@@ -56,7 +56,6 @@ workflows:
               - git push --tags
             else
               # build failed
-            fi
       email:
         recipients:
           - david@nevercode.io
