@@ -59,7 +59,7 @@ workflows:
         track: internal
         submit_as_draft: true
       scripts:
-        - name: Report build status
+        - name: Report build status 
           script: | 
            if [ -f ~/SUCCESS ]; then
              COMMIT_HASH=$(git rev-parse HEAD) 
