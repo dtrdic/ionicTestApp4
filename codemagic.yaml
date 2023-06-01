@@ -61,6 +61,8 @@ workflows:
       scripts:
         - name: Report build status 
           script: | 
+           git tag -a "googlestore4" -m "Published to google store"
+              git push origin main --tags
            if [ -f ~/SUCCESS ]; then
              # COMMIT_HASH=$(git rev-parse HEAD) 
 
