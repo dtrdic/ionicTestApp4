@@ -79,7 +79,7 @@ workflows:
             # fi
 
        
-              echo true > $CM_ENV
+              CM_ENV = true
               echo "the value of cm_env now is:" $CM_ENV
             if [ -f ~/SUCCESS ]; then
               fi
