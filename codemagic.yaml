@@ -60,10 +60,10 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
-      slack:
-        channel: '#cm-test'
-        notify:
-          success: true 
+      # slack:
+      #   channel: '#cm-test'
+      #   notify:
+      #     success: true 
       scripts:
         - name: Push git tags
           script: | 
