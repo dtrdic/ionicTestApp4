@@ -17,7 +17,6 @@ workflows:
           events:
               - pull_request
               - push
-              - tag
           branch_patterns:
           - pattern: "main" 
             include: true
