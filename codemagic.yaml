@@ -64,10 +64,9 @@ workflows:
       scripts:
         - name: Push git tags
           script: | 
-            set -e # exit on first failed command
-            set -x # print all executed commands to the log
+            LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
 
-            if [ "$CM_BUILD_STEP_STATUS" = "success" ]
+            if [[ "$LATEST_GOOGLE_PLAY_BUILD_NUMBER" == "$UPDATED_BUILD_NUMBER"]]
             then
               new_version=v1.0.$BUILD_NUMBER
               git tag $new_version
