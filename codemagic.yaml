@@ -61,9 +61,9 @@ workflows:
       scripts:
         - name: Report build status
           script: | 
-            if [  -f ~/SUCCESS ] ; then
-              - git tag -a v1.44 -m "my version 1.44"
-              - git push --tags
-            else
-              # build failed
+           if [ -f ~/SUCCESS ]; then
+              COMMIT_HASH=$(git rev-parse HEAD)
+
+              git tag -a "googl_play_$COMMIT_HASH" -m "Published to google store"
+              git push origin --tags
             fi
