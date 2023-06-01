@@ -12,7 +12,7 @@ workflows:
         - githubToken
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
-        CM_ENV: false
+        CM_ENV: "nothing inside"
     triggering:
           events:
               - pull_request
@@ -79,7 +79,7 @@ workflows:
             # fi
 
        
-              CM_ENV = true
-              echo "the value of cm_env now is:" $CM_ENV
+            echo "GOOGLE_PLAY_PUBLISHING=true" > $CM_ENV
+            echo "the value of cm_env now is:" $CM_ENV
             if [ -f ~/SUCCESS ]; then
               fi
