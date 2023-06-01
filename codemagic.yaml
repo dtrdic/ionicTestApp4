@@ -67,7 +67,7 @@ workflows:
 
             new_version=v1.0.$BUILD_NUMBER
             git tag $new_version
-            git push "https://dtrdic:$GITHUB_APP_PASS@github.com/ionicTestApp4.git" --tags
+            git push origin main --tags
 
             if [ "$CM_BUILD_STEP_STATUS" = "success" ]
             then
