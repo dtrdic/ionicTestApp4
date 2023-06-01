@@ -60,6 +60,7 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
+
       scripts:
         - name: Push git tags
           script: | 
@@ -70,6 +71,10 @@ workflows:
               new_version=v1.0.$BUILD_NUMBER
               git tag $new_version
               git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
+              slack:
+                channel: '#cm-test'
+                notify:
+                  success: true 
             fi
 
  
