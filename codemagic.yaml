@@ -60,21 +60,15 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
-
+      slack:
+        channel: '#cm-test'
+        notify:
+          success: true 
       scripts:
         - name: Push git tags
           script: | 
-            LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
-
-            if [[ "$LATEST_GOOGLE_PLAY_BUILD_NUMBER" == "$UPDATED_BUILD_NUMBER"]];
-            then
-              new_version=v1.0.$BUILD_NUMBER
-              git tag $new_version
-              git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
-              slack:
-                channel: '#cm-test'
-                notify:
-                  success: true 
-            fi
+            new_version=v1.0.$BUILD_NUMBER
+            git tag $new_version
+            git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
 
  
