@@ -59,13 +59,24 @@ workflows:
         track: internal
         submit_as_draft: true
       scripts:
-        - name: Report build status 
+        - name: Push git tags
           script: | 
-           git tag -a "googlestore4" -m "Published to google store"
-              git push origin main --tags
-           if [ -f ~/SUCCESS ]; then
-             # COMMIT_HASH=$(git rev-parse HEAD) 
+            #!/usr/bin/env bash
+            set -e # exit on first failed command
+            set -x # print all executed commands to the log
 
-              git tag -a "googlestore3" -m "Published to google store"
-              git push origin main --tags
+            if [ "$CM_BUILD_STEP_STATUS" = "success" ]
+            then
+              new_version=v1.0.$BUILD_NUMBER
+              git tag $new_version
+              git push "https://github.com/dtrdic/ionicTestApp4.git" --tags
             fi
+
+          #  git tag -a "googlestore4" -m "Published to google store"
+          #     git push origin main --tags
+          #  if [ -f ~/SUCCESS ]; then
+          #    # COMMIT_HASH=$(git rev-parse HEAD) 
+
+          #     git tag -a "googlestore3" -m "Published to google store"
+          #     git push origin main --tags
+          #   fi
