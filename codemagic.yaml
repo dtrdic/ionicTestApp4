@@ -9,6 +9,7 @@ workflows:
       groups:
         - google_play_credentials
         - githubPassword
+        - githubToken
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
     triggering:
@@ -67,7 +68,7 @@ workflows:
 
             new_version=v1.0.$BUILD_NUMBER
             git tag $new_version
-            git push origin main --tags
+            git push "https://dtrdic:$GITHUB_TOKEN@github.com/ionicTestApp4.git" --tags
 
             if [ "$CM_BUILD_STEP_STATUS" = "success" ]
             then
