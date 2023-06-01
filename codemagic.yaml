@@ -78,8 +78,8 @@ workflows:
             # git push "https://dtrdic:$GITHUB_TOKEN@github.com/ionicTestApp4.git" --tags
             # fi
 
-       
+            echo "variable value at start is" $CM_ENV
             echo "GOOGLE_PLAY_PUBLISHING=true" > $CM_ENV
             echo "the value of cm_env now is:" $CM_ENV
-            if [ -f ~/SUCCESS ]; then
-              fi
+            # if [ -f ~/SUCCESS ]; then
+            # fi
