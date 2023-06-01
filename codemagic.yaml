@@ -1,10 +1,8 @@
 workflows:
-  
   ionic-capacitor-android-workflow:
     name: Ionic Capacitor Android Workflow
     max_build_duration: 120
     instance_type: mac_mini_m1
-    # adding this comment for testing
     environment:
       android_signing:
         - davidKeystore
@@ -16,12 +14,11 @@ workflows:
           events:
               - pull_request
               - push
+              - tag
           branch_patterns:
-          - pattern: "main" 
+          - pattern: "test1" 
             include: true
             source: false
-          - pattern: "dev"
-            include: true
     scripts:
       - name: Install npm dependencies for Ionic project
         script: |
@@ -61,3 +58,12 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
+      scripts:
+        - name: Report build status
+          script: | 
+           if [ -f ~/SUCCESS ]; then
+              COMMIT_HASH=$(git rev-parse HEAD)
+
+              git tag -a "googl_play_$COMMIT_HASH" -m "Published to google store"
+              git push origin --tags
+            fi
