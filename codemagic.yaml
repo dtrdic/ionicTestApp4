@@ -74,11 +74,11 @@ workflows:
             # then
             #   new_version=v1.0.$BUILD_NUMBER
             #   git tag $new_version
-            #   git push "https://dtrdic:$GITHUB_APP_PASS@github.com/ionicTestApp4.git" --tags
+            # git push "https://dtrdic:$GITHUB_TOKEN@github.com/ionicTestApp4.git" --tags
             # fi
 
        
             if [ -f ~/SUCCESS ]; then
               echo "GOOGLE_PLAY_PUBLISHING=true" > $CM_ENV
-              fi
               echo "the value of cm_env now is:" $CM_ENV
+              fi
