@@ -8,6 +8,7 @@ workflows:
         - davidKeystore
       groups:
         - google_play_credentials
+        - githubPassword
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
     triggering:
@@ -61,7 +62,6 @@ workflows:
       scripts:
         - name: Push git tags
           script: | 
-            #!/usr/bin/env bash
             set -e # exit on first failed command
             set -x # print all executed commands to the log
 
@@ -69,7 +69,7 @@ workflows:
             then
               new_version=v1.0.$BUILD_NUMBER
               git tag $new_version
-              git push "https://github.com/dtrdic/ionicTestApp4.git" --tags
+              git push "https://dtrdic:$GITHUB_APP_PASS@github.com/ionicTestApp4.git" --tags
             fi
 
           #  git tag -a "googlestore4" -m "Published to google store"
