@@ -16,7 +16,7 @@ workflows:
               - push
               - tag
           branch_patterns:
-          - pattern: "test1" 
+          - pattern: "main" 
             include: true
             source: false
     scripts:
