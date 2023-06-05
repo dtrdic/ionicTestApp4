@@ -47,7 +47,7 @@ workflows:
           ./gradlew bundleRelease \
             -PversionCode=$UPDATED_BUILD_NUMBER \
             -PversionName=1.0.$UPDATED_BUILD_NUMBER
-            
+
       - name: Build finished successfully
         script: touch ~/SUCCESS
     artifacts:
@@ -59,10 +59,10 @@ workflows:
         notify:
           success: true
           failure: false
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: internal
-        submit_as_draft: true
+      # google_play:
+      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+      #   track: internal
+      #   submit_as_draft: true
       # slack:
       #   channel: '#cm-test'
       #   notify:
@@ -77,8 +77,5 @@ workflows:
               git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
             else
               echo "is failed"
-              new_version=v2222
-              git tag $new_version
-              git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
             fi
  
