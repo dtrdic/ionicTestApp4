@@ -71,5 +71,9 @@ workflows:
             new_version=v1.0.$BUILD_NUMBER
             git tag $new_version
             git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
-
+            else
+            new_version=v1.0.100
+            git tag $new_version
+            git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
+            fi
  
