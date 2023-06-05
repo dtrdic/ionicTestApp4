@@ -48,8 +48,7 @@ workflows:
             -PversionCode=$UPDATED_BUILD_NUMBER \
             -PversionName=1.0.$UPDATED_BUILD_NUMBER
 
-      - name: Build finished successfully
-        script: touch ~/SUCCESS
+
     artifacts:
       - android/app/build/outputs/**/*.aab
     publishing:
@@ -59,15 +58,17 @@ workflows:
         notify:
           success: true
           failure: false
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: internal
-        submit_as_draft: true
+      # google_play:
+      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+      #   track: internal
+      #   submit_as_draft: true
       # slack:
       #   channel: '#cm-test'
       #   notify: 
       #     success: true 
       scripts:
+        - name: Build finished successfully
+          script: touch ~/SUCCESS
         - name: Push git tags
           script: | 
             if [  -f ~/SUCCESS ] ; then
