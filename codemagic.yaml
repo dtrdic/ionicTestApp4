@@ -65,7 +65,7 @@ workflows:
       #   submit_as_draft: true
       # slack:
       #   channel: '#cm-test'
-      #   notify:
+      #   notify: 
       #     success: true 
       scripts:
         - name: Push git tags
