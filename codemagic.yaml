@@ -65,7 +65,7 @@ workflows:
       #   notify: 
       #     success: true 
       scripts:
-        - name: Build finished successfully
+        - name: Build finished successfully 
           script: touch ~/SUCCESS
         - name: Push git tags
           script: | 
