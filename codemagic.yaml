@@ -65,16 +65,26 @@ workflows:
       #   notify: 
       #     success: true 
       scripts:
-        - name: Build finished successfully 
-          script: touch ~/SUCCESS
-        - name: Push git tags
-          script: | 
-            if [  -f ~/SUCCESS ] ; then
-              echo "is succesfull"
-              new_version=v1.0.$BUILD_NUMBER
-              git tag $new_version
-              git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
-            else
-              echo "is failed"
-            fi
- 
+        # - name: Build finished successfully 
+        #   script: touch ~/SUCCESS
+        # - name: Push git tags
+        #   script: | 
+        #     if [  -f ~/SUCCESS ] ; then
+        #       echo "is succesfull"
+        #       new_version=v1.0.$BUILD_NUMBER
+        #       git tag $new_version
+        #       git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
+        #     else
+        #       echo "is failed"
+        #     fi
+          - name: Check distribution status
+            script: | 
+              PUBLISHING_STATUS=$(curl -H "Content-Type: application/json" \
+                  -H "x-auth-token: $GITHUB_TOKEN" \
+                  --request GET https://api.codemagic.io/builds/$CM_BUILD_ID | jq '.build.buildActions[] | select (.type == "publishing") | .status')
+              
+              if [ "$PUBLISHING_STATUS" == "success" ] ; then
+                echo "is succesfull"
+              else
+                 echo "is failed"
+              fi
