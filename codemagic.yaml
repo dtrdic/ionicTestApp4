@@ -86,6 +86,8 @@ workflows:
               
               if [ "$PUBLISHING_STATUS" == "success" ] ; then
                 echo "is succesfull"
+                echo "PUBLISHING_STATUS: " $PUBLISHING_STATUS
               else
                  echo "is failed"
+                 echo "PUBLISHING_STATUS: " $PUBLISHING_STATUS
               fi
