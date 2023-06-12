@@ -84,7 +84,7 @@ workflows:
                   -H "x-auth-token: $CODEMAGIC_TOKEN" \
                   --request GET https://api.codemagic.io/builds/$CM_BUILD_ID | jq '.build.buildActions[] | select (.type == "publishing") | .status')
               
-              if [ "$PUBLISHING_STATUS" == "success" ] ; then
+              if [ echo "$PUBLISHING_STATUS" == "success" ] ; then
                 echo "is succesfull"
                 echo "PUBLISHING_STATUS: " $PUBLISHING_STATUS
               else
