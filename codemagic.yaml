@@ -53,7 +53,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - david@nevercode.io
+          - test@gizardsolution.com
         notify:
           success: true
           failure: false
