@@ -23,7 +23,7 @@ workflows:
             include: true
             source: false
     scripts:
-      - name: Install npm dependencies for Ionic project
+      - name: Install npm dependencies for Ionic project 
         script: |
           npm install
       - name: Set up local.properties
