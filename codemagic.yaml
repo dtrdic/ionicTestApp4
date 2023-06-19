@@ -6,7 +6,7 @@ workflows:
     environment:
       android_signing:
         - davidKeystore
-      xcode: 14.2
+      xcode: 17.2
       groups:
         - google_play_credentials
         - githubPassword
