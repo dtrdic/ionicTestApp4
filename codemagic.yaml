@@ -61,10 +61,10 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
-      slack:
-        channel: '#testprivatechannel'
-        notify: 
-          success: true 
+      # slack:
+      #   channel: '#testprivatechannel'
+      #   notify: 
+      #     success: true 
       scripts:
         # - name: Build finished successfully 
         #   script: touch ~/SUCCESS
