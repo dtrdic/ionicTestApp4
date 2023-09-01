@@ -11,6 +11,7 @@ workflows:
         - githubPassword
         - githubToken
         - token
+        - firebase_credentials
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
         CM_ENV: "nothing inside"
@@ -36,10 +37,6 @@ workflows:
         script: | 
           LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
           if [ -z $LATEST_GOOGLE_PLAY_BUILD_NUMBER ]; then
-            # fallback in case no build number was found from Google Play.
-            # Alternatively, you can `exit 1` to fail the build
-            # BUILD_NUMBER is a Codemagic built-in variable tracking the number
-            # of times this workflow has been built
             UPDATED_BUILD_NUMBER=$BUILD_NUMBER
           else
             UPDATED_BUILD_NUMBER=$(($LATEST_GOOGLE_PLAY_BUILD_NUMBER + 1))
@@ -57,15 +54,29 @@ workflows:
         notify:
           success: true
           failure: false
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: internal
-        submit_as_draft: true
-      # slack:
-      #   channel: '#testprivatechannel'
-      #   notify: 
-      #     success: true 
+      # google_play:
+      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+      #   track: internal
+      #   submit_as_draft: true
+      firebase:
+          firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
+          ios:
+            app_id: 1:701760780130:ios:c8f3bbbaf7c9b23cf09e3b
       scripts:
+          - name: Upload debug symbols to Firebase Crashlytics
+            script: | 
+              echo "Find build artifacts"
+              dsymPath=$(find $CM_BUILD_DIR/build/ios/archive/Runner.xcarchive -name "*.dSYM*")
+              #dsymPath=$(find "$(dirname "$CM_BUILD_DIR")/build_outputs" -name "*.dSYM*")
+              if [[ -z ${dsymPath} ]]
+              then
+                echo "No debug symbols were found, skip publishing to Firebase Crashlytics"
+              else
+                echo "Publishing debug symbols from $dsymPath to Firebase Crashlytics"
+                ls -d -- ios/Pods/*
+                $CM_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols \
+                  -gsp ios/App/GoogleService-Info.plist -p ios $dsymPath 
+              fi
         # - name: Build finished successfully 
         #   script: touch ~/SUCCESS
         # - name: Push git tags
@@ -78,16 +89,16 @@ workflows:
         #     else
         #       echo "is failed"
         #     fi
-          - name: Check distribution status
-            script: | 
-              PUBLISHING_STATUS=$(curl -H "Content-Type: application/json" \
-                  -H "x-auth-token: $CODEMAGIC_TOKEN" \
-                  --request GET https://api.codemagic.io/builds/$CM_BUILD_ID | jq '.build.buildActions[] | select (.type == "publishing") | .status')
-              
-              if [ "$PUBLISHING_STATUS" == "success" ] ; then
-                echo "is succesfull"
-                echo "PUBLISHING_STATUS: " $PUBLISHING_STATUS
-              else
-                 echo "is failed"
-                 echo "PUBLISHING_STATUS: " $PUBLISHING_STATUS
-              fi
+        # - name: Check distribution status
+        #   script: | 
+        #     PUBLISHING_STATUS=$(curl -H "Content-Type: application/json" \
+        #         -H "x-auth-token: $CODEMAGIC_TOKEN" \
+        #         --request GET https://api.codemagic.io/builds/$CM_BUILD_ID | jq '.build.buildActions[] | select (.type == "publishing") | .status')
+            
+        #     if [ "$PUBLISHING_STATUS" == "success" ] ; then
+        #       echo "is succesfull"
+        #       echo "PUBLISHING_STATUS: " $PUBLISHING_STATUS
+        #     else
+        #         echo "is failed"
+        #         echo "PUBLISHING_STATUS: " $PUBLISHING_STATUS
+        #     fi
