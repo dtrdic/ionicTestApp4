@@ -24,6 +24,8 @@ import './theme/variables.css';
 
 setupIonicReact();
 
+const test= "unusedvar";
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
