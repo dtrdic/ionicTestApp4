@@ -13,15 +13,14 @@ workflows:
         - token
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
-        CM_ENV: "nothing inside"
     triggering:
-          events:
-              - pull_request
-              - push
-          branch_patterns:
-          - pattern: "main" 
-            include: true
-            source: false
+      events:
+          - pull_request
+          - push
+      branch_patterns:
+      - pattern: "main" 
+        include: true
+        source: false
     scripts:
       - name: Install npm dependencies for Ionic project 
         script: |
