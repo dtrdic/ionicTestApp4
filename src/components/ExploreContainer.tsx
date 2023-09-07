@@ -3,7 +3,7 @@ import './ExploreContainer.css';
 interface ContainerProps { }
 
 const ExploreContainer: React.FC<ContainerProps> = () => {
-  //const unusedVariable = 'This variable is not used';
+  const unusedVariable = 'This variable is not used';
   return (
     <div className="container">
       <strong>Ready to create an app?</strong>
