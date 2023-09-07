@@ -26,9 +26,13 @@ workflows:
       - name: Install npm dependencies for Ionic project 
         script: |
           npm install
+      # - name: change variable 
+      #   script: |
+      #     echo "CI=false" >> $CM_ENV
       - name: This can be deleted
         script: |
-          npm run build
+          CI=false npm run build
+          #npm run build
       - name: Set up local.properties
         script: | 
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
