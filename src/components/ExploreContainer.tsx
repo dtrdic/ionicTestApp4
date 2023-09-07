@@ -2,7 +2,7 @@ import './ExploreContainer.css';
 
 interface ContainerProps { }
 
-//const unusedVariable = 'This variable is not used';
+const unusedVariable = 'This variable is not used';
 const ExploreContainer: React.FC<ContainerProps> = () => {
   return (
     <div className="container">
