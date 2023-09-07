@@ -29,7 +29,7 @@ workflows:
       # - name: change variable 
       #   script: |
       #     echo "CI=false" >> $CM_ENV
-      - name: This can be deleted
+      - name: This can be deleted 
         script: |
           CI=false npm run build
           #npm run build
