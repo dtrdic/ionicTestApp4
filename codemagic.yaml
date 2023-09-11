@@ -25,9 +25,6 @@ workflows:
       - name: Install npm dependencies for Ionic project 
         script: |
           npm install
-      # - name: change variable 
-      #   script: |
-      #     echo "CI=false" >> $CM_ENV
       - name: Run build
         script: |
           CI=false npm run build
@@ -50,6 +47,10 @@ workflows:
           ./gradlew bundleRelease \
             -PversionCode=$UPDATED_BUILD_NUMBER \
             -PversionName=1.0.$UPDATED_BUILD_NUMBER
+      - name: Capacitor-assets
+        script: | 
+          npx capacitor-assets generate
+          npx cap sync
     artifacts:
       - android/app/build/outputs/**/*.aab
     publishing:
