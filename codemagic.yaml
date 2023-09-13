@@ -150,8 +150,8 @@ workflows:
         notify:
           success: true
           failure: false
-      app_store_connect:
-        auth: integration
+      # app_store_connect:
+      #   auth: integration
       scripts:
         - name: Upload debug symbols to Firebase Crashlytics
           script: | 
