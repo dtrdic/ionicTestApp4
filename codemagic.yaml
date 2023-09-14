@@ -1,6 +1,6 @@
 workflows:
   ionic-capacitor-android-workflow:
-    name: Ionic Capacitor Android Workflow
+    name: Ionic Android Workflow
     max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
@@ -13,14 +13,14 @@ workflows:
         - token
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
-    triggering:
-      events:
-          - pull_request
-          - push
-      branch_patterns:
-      - pattern: "main" 
-        include: true
-        source: false
+    # triggering:
+    #   events:
+    #       - pull_request
+    #       - push
+    #   branch_patterns:
+    #   - pattern: "main" 
+    #     include: true
+    #     source: false
     scripts:
       - name: Install npm dependencies for Ionic project 
         script: |
@@ -47,10 +47,6 @@ workflows:
           ./gradlew bundleRelease \
             -PversionCode=$UPDATED_BUILD_NUMBER \
             -PversionName=1.0.$UPDATED_BUILD_NUMBER
-      # - name: Capacitor-assets
-      #   script: | 
-      #     npx capacitor-assets generate
-      #     npx cap sync
     artifacts:
       - android/app/build/outputs/**/*.aab
     publishing:
@@ -114,9 +110,9 @@ workflows:
       - name: Set up local.properties
         script: | 
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
-      - name: Cocoapods installation
-        script: | 
-          cd ios/App && pod install
+      # - name: Cocoapods installation
+      #   script: | 
+      #     cd ios/App && pod install
       - name: Update dependencies and copy web assets to native project
         script: | 
           # if you don't need to update native dependencies, use this:
@@ -134,7 +130,7 @@ workflows:
       #     agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: | 
-          #cd ios/App
+          pod install --repo-update
           xcode-project build-ipa \
             --workspace "$XCODE_WORKSPACE" \
             --scheme "$XCODE_SCHEME" \
