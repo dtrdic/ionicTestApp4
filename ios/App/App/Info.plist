@@ -26,10 +26,7 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
+	<!-- <key>UIRequiredDeviceCapabilities</key> -->
 	<string>UILaunchImageName</string>
 	<key>Splash</key>
 	<string>CFBundleIconFile</string>
