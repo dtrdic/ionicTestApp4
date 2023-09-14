@@ -111,6 +111,9 @@ workflows:
       - name: Install npm dependencies for Ionic Capacitor project
         script: | 
           npm install
+      - name: Set up local.properties
+        script: | 
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
       - name: Cocoapods installation
         script: | 
           cd ios/App && pod install
@@ -131,10 +134,11 @@ workflows:
       #     agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: | 
-          cd ios/App
+          #cd ios/App
           xcode-project build-ipa \
             --workspace "$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+            --scheme "$XCODE_SCHEME" \
+            --archive-flags="-destination 'generic/platform=iOS'"
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
