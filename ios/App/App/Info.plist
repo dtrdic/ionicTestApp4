@@ -28,7 +28,7 @@
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string> <!-- ovo sam dodao -->
+		<string>armv7</string>
 	</array>
 	<string>UILaunchImageName</string>
 	<key>Splash</key>
