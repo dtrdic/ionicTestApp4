@@ -25,12 +25,12 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<!-- <key>UIRequiredDeviceCapabilities</key> -->
+	<key>UIRequiredDeviceCapabilities</key>
 	<string>UILaunchImageName</string>
 	<key>Splash</key>
 	<string>CFBundleIconFile</string>
 	<key>AppIcon</key>
+	<string>Main</string>
 	<array>
 		<string>armv7</string>
 	</array>
