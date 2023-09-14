@@ -170,5 +170,5 @@ workflows:
               echo "Publishing debug symbols from $dsymPath to Firebase Crashlytics"
               ls -d -- ios/Pods/*
               $CM_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols \
-                -gsp ios/App/GoogleService-Info.plist -p ios $dsymPath 
+                -gsp ios/App/App/GoogleService-Info.plist -p ios $dsymPath 
             fi

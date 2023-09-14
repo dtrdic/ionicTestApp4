@@ -27,6 +27,9 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string> <!-- ovo sam dodao -->
+	</array>
 	<string>UILaunchImageName</string>
 	<key>Splash</key>
 	<string>CFBundleIconFile</string>
