@@ -26,19 +26,25 @@ workflows:
       - name: Install timeout command 
         script: |
           brew install coreutils
-      - name: AWS bucket
+      - name: create a random sample file
         script: |
-          bucket_name="dtrdic-bucket"
-          rr_rw_soa="$(host -t SOA s3-r-w.us-east-1.amazonaws.com | grep -o '[^ ]\{1,\}\.awsdns-[^ ]\{1,\}')"
-          rr_rw_a="$(timeout 2s bash -c "while ! host s3-r-w.us-east-1.amazonaws.com '${rr_rw_soa}' | grep -o '3\.5\.[0-9]\{1,\}\.[0-9]\{1,\}'; do continue; done")"
+          dd if=/dev/urandom of=sample.txt bs=8M count=1
+      - name: METHOD - 1 - upload it to an AWS 
+        script: |
+          aws s3 cp sample.txt s3://dtrdic-bucket
+      # - name: METHOD - 2 - upload it to an AWS
+      #   script: |
+      #     bucket_name="dtrdic-bucket"
+      #     rr_rw_soa="$(host -t SOA s3-r-w.us-east-1.amazonaws.com | grep -o '[^ ]\{1,\}\.awsdns-[^ ]\{1,\}')"
+      #     rr_rw_a="$(timeout 2s bash -c "while ! host s3-r-w.us-east-1.amazonaws.com '${rr_rw_soa}' | grep -o '3\.5\.[0-9]\{1,\}\.[0-9]\{1,\}'; do continue; done")"
 
-          rr_w_soa="$(host -t SOA s3-w.us-east-1.amazonaws.com | grep -o '[^ ]\{1,\}\.awsdns-[^ ]\{1,\}')"
-          rr_w_a="$(timeout 2s bash -c "while ! host s3-w.us-east-1.amazonaws.com '${rr_w_soa}' | grep -o '3\.5\.[0-9]\{1,\}\.[0-9]\{1,\}'; do continue; done")"
+      #     rr_w_soa="$(host -t SOA s3-w.us-east-1.amazonaws.com | grep -o '[^ ]\{1,\}\.awsdns-[^ ]\{1,\}')"
+      #     rr_w_a="$(timeout 2s bash -c "while ! host s3-w.us-east-1.amazonaws.com '${rr_w_soa}' | grep -o '3\.5\.[0-9]\{1,\}\.[0-9]\{1,\}'; do continue; done")"
 
-          sudo tee -a /etc/hosts <<EOD
-          $(head -n 1 <<<"${rr_rw_a}") "${bucket_name}.s3.us-east-1.amazonaws.com"
-          $(head -n 1 <<<"${rr_w_a}") "${bucket_name}.s3.amazonaws.com"
-          EOD
+      #     sudo tee -a /etc/hosts <<EOD
+      #     $(head -n 1 <<<"${rr_rw_a}") "${bucket_name}.s3.us-east-1.amazonaws.com"
+      #     $(head -n 1 <<<"${rr_w_a}") "${bucket_name}.s3.amazonaws.com"
+      #     EOD
       - name: Install npm dependencies for Ionic project 
         script: |
           npm install
