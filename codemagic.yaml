@@ -109,7 +109,7 @@ workflows:
           npm install
       - name: Cocoapods installation
         script: |
-          cd ios/App && pod install
+          cd ios/App/app && pod install
       - name: Update dependencies and copy web assets to native project
         script: |
           # npx cap copy # <- use this is you don't need to update native dependencies
