@@ -114,6 +114,10 @@ workflows:
         script: |
           # npx cap copy # <- use this is you don't need to update native dependencies
           npx cap sync # <- update native dependencies and copy web assets to native project
+      - name: Capacitor-assets
+        script: |
+          npx capacitor-assets generate
+          npx cap sync
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles
