@@ -2,9 +2,8 @@ workflows:
   ionic-capacitor-android-workflow:
     name: Ionic Android Workflow
     max_build_duration: 120
-    instance_type: mac_pro
+    instance_type: mac_mini_m1
     environment:
-      xcode: 14.2
       android_signing:
         - davidKeystore
       groups:
