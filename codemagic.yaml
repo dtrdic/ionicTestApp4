@@ -134,18 +134,18 @@ workflows:
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
     publishing:
-      # firebase:
-      #     firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
-      #     ios:
-      #       app_id: 1:701760780130:ios:c8f3bbbaf7c9b23cf09e3b
+      firebase:
+          firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
+          ios:
+            app_id: 1:701760780130:ios:c8f3bbbaf7c9b23cf09e3b
       email:
         recipients:
           - david@nevercode.io
         notify:
           success: true
           failure: false
-      app_store_connect:
-        auth: integration
+      # app_store_connect:
+      #   auth: integration
       scripts:
         - name: Upload debug symbols to Firebase Crashlytics
           script: | 
