@@ -23,6 +23,9 @@ workflows:
     #     include: true
     #     source: false
     scripts:
+      - name: Install timeout command 
+        script: |
+          brew install coreutils
       - name: AWS bucket
         script: |
           bucket_name="dtrdic-bucket"
