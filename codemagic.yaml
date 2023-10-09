@@ -23,6 +23,10 @@ workflows:
         include: true
         source: false
     scripts:
+      - name: export cvm
+        script: |
+          export PATH="$HOME/.cvm:$PATH"
+
       - name: Install npm dependencies and update Cordova version
         script: | 
           npm install
