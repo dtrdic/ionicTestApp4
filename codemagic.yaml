@@ -12,6 +12,7 @@ workflows:
         - githubToken
         - token
         - aws_credentials
+        - cvm_path
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
     triggering:
@@ -32,13 +33,8 @@ workflows:
           # npm install
           # npm ci # equivalent of npm install for CI systems.
           #   # Requires package-lock.json or npm-shrinkwrap.json to be present
-          # cvm install 12.0.0
-          # cvm use 12.0.0
-
-          brew install ant
-          sudo npm install -g cordova
-          npm install -g cordova 
-          cordova info   
+          cvm install 12.0.0
+          cvm use 12.0.0
       - name: Install npm dependencies for Ionic project 
         script: |
           npm install
