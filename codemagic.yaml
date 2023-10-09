@@ -14,14 +14,14 @@ workflows:
         - aws_credentials
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8"
-    # triggering:
-    #   events:
-    #       - pull_request
-    #       - push
-    #   branch_patterns:
-    #   - pattern: "main" 
-    #     include: true
-    #     source: false
+    triggering:
+      events:
+          - pull_request
+          - push
+      branch_patterns:
+      - pattern: "main" 
+        include: true
+        source: false
     scripts:
       - name: Install npm dependencies and update Cordova version
         script: | 
