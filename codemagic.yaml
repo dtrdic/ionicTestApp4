@@ -14,7 +14,7 @@ workflows:
         - aws_credentials
         - cvm_path
       vars:
-        PACKAGE_NAME: "io.codemagic.dtrdic8"
+        PACKAGE_NAME: "io.codemagic.dtrdic8" 
     triggering:
       events:
           - pull_request
