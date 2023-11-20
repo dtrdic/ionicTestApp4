@@ -17,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 //     return project.hasProperty('versionName') ? versionName : "1.0"
 // }
 
-   def latestGooglePlayBuildNumber = Integer.valueOf(System.env.LATEST_GOOGLE_PLAY_BUILD_NUMBER ?: System.env.BUILD_NUMBER ?: 0)
+   def latestGooglePlayBuildNumber = Integer.valueOf(System.env.PROJECT_BUILD_NUMBER ?: System.env.BUILD_NUMBER ?: 0)
 
 
 android {
