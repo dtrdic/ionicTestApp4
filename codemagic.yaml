@@ -72,7 +72,7 @@ workflows:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
-        submit_as_draft: true
+        submit_as_draft: false
         # - name: Build finished successfully 
         #   script: touch ~/SUCCESS
         # - name: Push git tags
