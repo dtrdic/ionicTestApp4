@@ -23,6 +23,9 @@ workflows:
       - pattern: main, test_1
         include: true
         source: false 
+      - pattern: test_1
+        include: true
+        source: false 
     scripts:
       # - name: export cvm
       #   script: |
