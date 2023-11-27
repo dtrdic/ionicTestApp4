@@ -22,7 +22,7 @@ workflows:
       branch_patterns:
       - pattern: "main" 
         include: true
-        source: false 
+        source: true 
     scripts:
       # - name: export cvm
       #   script: |
