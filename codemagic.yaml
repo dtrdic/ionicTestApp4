@@ -49,7 +49,7 @@ workflows:
       - name: Update dependencies and copy web assets to native project
         script: | 
           npx cap sync
-      - name: Build Android release
+      - name: Build Android release 
         script: | 
           LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
           if [ -z $LATEST_GOOGLE_PLAY_BUILD_NUMBER ]; then
