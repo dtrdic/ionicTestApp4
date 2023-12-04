@@ -23,7 +23,7 @@ workflows:
       branch_patterns:
       - pattern: main
         include: true
-      - pattern: test_1
+      - pattern: devtest
         include: true
     scripts:
       # - name: export cvm
