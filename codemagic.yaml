@@ -19,7 +19,11 @@ workflows:
     triggering:
       events:
          # - pull_request #test1
-          - push
+          - tag
+          #- push
+      tag_patterns:
+        - pattern: "ctc-v*_main-v*"
+          include: true
       branch_patterns:
       - pattern: main
         include: true
