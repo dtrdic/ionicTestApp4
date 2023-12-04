@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.appdistribution'
+
 
 // used only for local testing
 def keystoreProperties = new Properties()
@@ -51,6 +53,9 @@ android {
     buildTypes {
 
         release {
+            firebaseAppDistribution {
+                serviceCredentialsFile=System.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+        }
             signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

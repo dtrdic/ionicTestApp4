@@ -13,16 +13,18 @@ workflows:
         - token
         - aws_credentials
         - cvm_path
+        - firebase_credentials_admin
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
     triggering:
       events:
-          - pull_request
+         # - pull_request
           - push
       branch_patterns:
-      - pattern: "main" 
+      - pattern: main
         include: true
-        source: true 
+      - pattern: test_1
+        include: true
     scripts:
       # - name: export cvm
       #   script: |
@@ -48,7 +50,7 @@ workflows:
       - name: Update dependencies and copy web assets to native project
         script: | 
           npx cap sync
-      - name: Build Android release
+      - name: Build Android release 
         script: | 
           LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
           if [ -z $LATEST_GOOGLE_PLAY_BUILD_NUMBER ]; then
@@ -69,10 +71,14 @@ workflows:
         notify:
           success: true
           failure: false
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: internal
-        submit_as_draft: true
+      firebase:
+        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT_APP_DISTRIBUTION_ADMIN
+        android:
+          app_id: 1:701760780130:android:0d47604cb2123e95f09e3b
+      # google_play:
+      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+      #   track: internal
+      #   submit_as_draft: true
         # - name: Build finished successfully 
         #   script: touch ~/SUCCESS
         # - name: Push git tags
