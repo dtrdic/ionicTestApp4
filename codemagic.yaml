@@ -22,7 +22,7 @@ workflows:
           - tag
           #- push
       tag_patterns:
-        - pattern: "ctc-v*_main-v*"
+        - pattern: "ctc-v*_main-v*" 
           include: true
       branch_patterns:
       - pattern: main
