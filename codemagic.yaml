@@ -117,7 +117,6 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
-      cocoapods: 1.13.0
       ios_signing:
         distribution_type: ad_hoc
         bundle_identifier: io.codemagic.dtrdic8
