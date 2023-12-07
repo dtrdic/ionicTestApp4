@@ -117,6 +117,7 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
+      cocoapods: 1.13.0
       ios_signing:
         distribution_type: ad_hoc
         bundle_identifier: io.codemagic.dtrdic8
@@ -148,7 +149,7 @@ workflows:
         script: |
           cd $CM_BUILD_DIR/ios/App
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID")
-          agvtool new-version -all 1.0.$(($BUILD_NUMBER + 1))
+          agvtool new-version -all 1.0.$(($PROJECT_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: |
           # cd $CM_BUILD_DIR/ios/App
