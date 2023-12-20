@@ -18,7 +18,7 @@ workflows:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
     triggering:
       events:
-         # - pull_request #test1
+         # - pull_request #test1dsa
           - tag
           #- push
       tag_patterns:
