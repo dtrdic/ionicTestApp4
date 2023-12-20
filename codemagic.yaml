@@ -22,12 +22,10 @@ workflows:
           - tag
           #- push
       tag_patterns:
-        - pattern: "ctc-v*_main-v*" 
+        - pattern: "*" 
           include: true
       branch_patterns:
-      - pattern: main
-        include: true
-      - pattern: devtest
+      - pattern: dev
         include: true
     scripts:
       # - name: export cvm
