@@ -2,7 +2,7 @@ workflows:
   ionic-capacitor-android-workflow:
     name: Ionic Android Workflow
     max_build_duration: 120
-    instance_type: linux_x2
+    instance_type: mac_mini_m1
     environment:
       android_signing:
         - davidKeystore
@@ -41,7 +41,7 @@ workflows:
           cvm use 12.0.0
       - name: Install npm dependencies for Ionic project 
         script: |
-          yarn
+          npm install
       - name: Run build
         script: |
           CI=false npm run build
