@@ -196,7 +196,7 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        # bundle_identifier: $BUNDLE_ID
+        bundle_identifier: io.codemagic.dtrdic8
       vars:
         APP_STORE_APPLE_ID: 1555555551
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
@@ -219,7 +219,7 @@ workflows:
         script: |
           ionic build
       - name: Change bundle id
-        script: sed -i '' -e 's/PRODUCT_BUNDLE_IDENTIFIER \= [^\;]*\;/PRODUCT_BUNDLE_IDENTIFIER = '${BUNDLE_ID}';/' ios/App/App.xcodeproj/project.pbxproj
+        script: sed -i '' -e 's/PRODUCT_BUNDLE_IDENTIFIER \= [^\;]*\;/PRODUCT_BUNDLE_IDENTIFIER = 'io.codemagic.dtrdic8';/' ios/App/App.xcodeproj/project.pbxproj
       # - name: Change iOS app name
       #   script: /usr/libexec/PlistBuddy -c "Set :CFBundleName $APP_NAME" -c "Set :CFBundleDisplayName $APP_NAME" ios/${XCODE_SCHEME}/App/Info.plist
       - name: Generate icon and splash assets for the project
