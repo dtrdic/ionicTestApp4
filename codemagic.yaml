@@ -185,3 +185,84 @@ workflows:
               $CM_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols \
                 -gsp ios/App/App/GoogleService-Info.plist -p ios $dsymPath 
             fi
+
+
+  ionic-capacitor-whitelabeling:
+    name: ionic iOS Whitelabeling
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: DavidAPIkey
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        # bundle_identifier: $BUNDLE_ID
+      vars:
+        APP_STORE_APPLE_ID: 1555555551
+        XCODE_WORKSPACE: "ios/App/App.xcworkspace"
+        XCODE_SCHEME: "App"
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
+    scripts:
+      - script: keychain initialize
+      - script: keychain add-certificates
+      - script: xcode-project use-profiles
+      - name: Install npm dependencies for Ionic project
+        script: |
+          npm install
+      - name: Build bundle for Ionic project
+        script: |
+          ionic build
+      - name: Change bundle id
+        script: sed -i '' -e 's/PRODUCT_BUNDLE_IDENTIFIER \= [^\;]*\;/PRODUCT_BUNDLE_IDENTIFIER = '${BUNDLE_ID}';/' ios/App/App.xcodeproj/project.pbxproj
+      # - name: Change iOS app name
+      #   script: /usr/libexec/PlistBuddy -c "Set :CFBundleName $APP_NAME" -c "Set :CFBundleDisplayName $APP_NAME" ios/${XCODE_SCHEME}/App/Info.plist
+      - name: Generate icon and splash assets for the project
+        script: |
+          npx @capacitor/assets generate --ios
+      - name: Update dependencies and copy web assets to native project
+        script: |
+          npx cap sync
+      - name: Enable capabilities
+        script: |
+          app-store-connect bundle-ids enable-capabilities \
+              $BUNDLE_ID \
+              --capability=HealthKit|Push Notifications
+      - name: Cocoapods installation
+        script: |
+          cd ios/App && pod install
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Increment build number
+        script: |
+          cd $CM_BUILD_DIR/ios/App
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_ID")
+          agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
+          agvtool new-marketing-version $BUILD_VERSION
+      - name: Build ipa for distribution
+        script: |
+          xcode-project build-ipa \
+          --workspace "$XCODE_WORKSPACE" \
+          --scheme "$XCODE_SCHEME" \
+          --archive-flags="-destination 'generic/platform=iOS'" \
+          --archive-xcargs "CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=NO"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      email:
+        recipients:
+          - david@nvercode.io
+        notify:
+          success: true
+          failure: false
+      app_store_connect:
+        auth: integration
