@@ -18,14 +18,14 @@ workflows:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
     triggering:
       events:
-         # - pull_request #test1teestmain
+          - pull_request #test1teestmain
           - tag
           #- push
       tag_patterns:
         - pattern: "*" 
           include: true
       branch_patterns:
-      - pattern: main
+      - pattern: 'main'
         include: true
     scripts:
       # - name: export cvm
