@@ -111,7 +111,7 @@ workflows:
   ionic-capacitor-ios-workflow:
     name: ionic iOS Workflow
     max_build_duration: 120
-    instance_type: mac_mini_m1
+    instance_type: mac_mini_m2
     integrations:
       app_store_connect: DavidAPIkey
     environment:
