@@ -126,6 +126,11 @@ workflows:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
     scripts:
+      - name: Install capabilities
+        script: |
+          app-store-connect bundle-ids enable-capabilities \
+            io.codemagic.dtrdic8 \
+            --capability=HealthKit|Push Notifications
       - name: Install npm dependencies for Ionic project
         script: |
           npm install
