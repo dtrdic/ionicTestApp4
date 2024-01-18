@@ -124,14 +124,12 @@ workflows:
         APP_STORE_APPLE_ID: 1555555551
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
+        BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
       - name: Install capabilities
         script: |
           app-store-connect bundle-ids enable-capabilities \
-              --issuer-id $APP_STORE_CONNECT_ISSUER_ID \
-              --key-id $APP_STORE_CONNECT_KEY_IDENTIFIER \
-              --private-key $APP_STORE_CONNECT_PRIVATE_KEY \
-              io.codemagic.dtrdic8 \
+              $BUNDLE_ID \
               --capability=HealthKit|Push Notifications
       - name: Install npm dependencies for Ionic project
         script: |
