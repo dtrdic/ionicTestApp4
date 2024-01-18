@@ -120,7 +120,6 @@ workflows:
         bundle_identifier: io.codemagic.dtrdic8
       groups:
         - firebase_credentials
-        - appstore_credentials #isto nije bilo prije
       vars:
         APP_STORE_APPLE_ID: 1555555551
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
@@ -129,8 +128,11 @@ workflows:
       - name: Install capabilities
         script: |
           app-store-connect bundle-ids enable-capabilities \
-            X8NNQ9CYL2.io.codemagic.dtrdic8 \
-            --capability=HealthKit|Push Notifications
+              --issuer-id $APP_STORE_CONNECT_ISSUER_ID \
+              --key-id $APP_STORE_CONNECT_KEY_IDENTIFIER \
+              --private-key $APP_STORE_CONNECT_PRIVATE_KEY \
+              io.codemagic.dtrdic8 \
+              --capability=HealthKit|Push Notifications
       - name: Install npm dependencies for Ionic project
         script: |
           npm install
