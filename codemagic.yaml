@@ -5,9 +5,7 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       android_signing:
-        - TestKeystore1
-        - TestKeystore2
-        - TestKeystore3
+        - davidKeystore
       groups:
         - google_play_credentials
         - githubPassword
