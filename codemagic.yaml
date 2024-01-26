@@ -28,13 +28,13 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      # - name: install -g ionic@5.4.16
-      #   script: |
-      #     npm install -g ionic@5.4.16
-      #     ionic serve --external
       - name: version ionic
         script: |
           ionic --version
+      - name: install -g ionic@6.14.1 
+        script: |
+          npm install -g ionic@6.14.1 
+          ionic serve --external
       - name: update ionic
         script: |
           npm update -g @ionic/cli
