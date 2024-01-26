@@ -28,19 +28,11 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      - name: uninstall ionic
+      - name: Install ionic/cli@6.14.1
         script: |
-          npm cache clean -f
-
-          npm uninstall -g @ionic/cli
-      - name: install -g ionic@6.14.1 
-        script: |
-          npm i @ionic/cli@6.14.1
-          ionic --version
-      - name: update ionic
-        script: |
-          npm update -g @ionic/cli
-      - name: version ionic
+          sudo npm -g config set prefix /opt/homebrew
+          npm i -gf @ionic/cli@6.14.1
+      - name: ionic version
         script: |
           ionic --version
 
@@ -125,11 +117,11 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: DavidAPIkey
+      app_store_connect: YourAPIkey
     environment:
       ios_signing:
-        distribution_type: ad_hoc
-        bundle_identifier: io.codemagic.dtrdic8
+        distribution_type: app_store
+        bundle_identifier: com.b1.ramadaplazabywyndhamizmir
       groups:
         - firebase_credentials
       vars:
@@ -138,11 +130,6 @@ workflows:
         XCODE_SCHEME: "App"
         BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
-      # - name: Install capabilities
-      #   script: |
-      #     app-store-connect bundle-ids enable-capabilities \
-      #         $BUNDLE_ID \
-      #         --capability=HealthKit|Push Notifications
       - name: Install npm dependencies for Ionic project
         script: |
           npm install
