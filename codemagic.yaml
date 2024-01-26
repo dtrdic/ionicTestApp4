@@ -28,12 +28,13 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      - name: version ionic
+      - name: uninstall ionic
         script: |
-          ionic --version
+          npm uninstall -g @ionic/cli
       - name: install -g ionic@6.14.1 
         script: |
           npm install -g @ionic/cli@6.14.1 --force
+          ionic --version
       - name: update ionic
         script: |
           npm update -g @ionic/cli
