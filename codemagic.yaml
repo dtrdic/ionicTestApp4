@@ -30,6 +30,8 @@ workflows:
     scripts:
       - name: uninstall ionic
         script: |
+          npm cache clean -f
+
           npm uninstall -g @ionic/cli
       - name: install -g ionic@6.14.1 
         script: |
