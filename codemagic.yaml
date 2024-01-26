@@ -31,12 +31,6 @@ workflows:
       # - name: uninstall ionic
       #   script: |
       #     npm uninstall -g @ionic/cli
-      - name: version ionic
-        script: |
-          ionic --version
-      - name: update ionic
-        script: |
-          npm update -g @ionic/cli
       - name: Install npm dependencies and update Cordova version
         script: | 
           # npm install
@@ -47,6 +41,15 @@ workflows:
       - name: Install npm dependencies for Ionic project 
         script: |
           npm install
+      - name: version ionic
+        script: |
+          ionic --version
+      - name: update ionic
+        script: |
+          npm update -g @ionic/cli
+      - name: version ionic
+        script: |
+          ionic --version
       - name: Run build
         script: |
           CI=false npm run build
