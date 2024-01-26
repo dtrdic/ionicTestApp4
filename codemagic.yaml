@@ -28,10 +28,15 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      # - name: export cvm
+      # - name: uninstall ionic
       #   script: |
-      #     export PATH="$HOME/.cvm:$PATH"
-      #     echo "the path is: $PATH "
+      #     npm uninstall -g @ionic/cli
+      - name: update ionic
+        script: |
+          npm update -g @ionic/cli
+      - name: version ionic
+        script: |
+          ionic --version
       - name: Install npm dependencies and update Cordova version
         script: | 
           # npm install
@@ -126,11 +131,11 @@ workflows:
         XCODE_SCHEME: "App"
         BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
-      - name: Install capabilities
-        script: |
-          app-store-connect bundle-ids enable-capabilities \
-              $BUNDLE_ID \
-              --capability=HealthKit|Push Notifications
+      # - name: Install capabilities
+      #   script: |
+      #     app-store-connect bundle-ids enable-capabilities \
+      #         $BUNDLE_ID \
+      #         --capability=HealthKit|Push Notifications
       - name: Install npm dependencies for Ionic project
         script: |
           npm install
