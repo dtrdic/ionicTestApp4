@@ -18,7 +18,7 @@ workflows:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
     cache:
         cache_paths:
-          - $CM_BUILD_DIR/node_modules
+          - clone/node_modules
     triggering:
       events:
           # - pull_request #test1teestmain
