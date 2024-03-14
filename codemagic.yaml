@@ -19,6 +19,11 @@ workflows:
     cache:
       cache_paths:
         - /opt/homebrew/Cellar/librsvg/
+        - /opt/homebrew/Cellar/giflib/
+        - /opt/homebrew/Cellar/jpeg/
+        - /opt/homebrew/Cellar/libpng/
+        - /opt/homebrew/Cellar/pango/
+        - /opt/homebrew/Cellar/cairo/
     triggering:
       events:
           # - pull_request #test1teestmain
@@ -31,17 +36,19 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      - name: brew install pkg-config 
-        script: |
-          arch -arm64 brew install pkg-config cairo pango libpng jpeg giflib librsvg
       - name: Install ionic/cli@6.14.1
         script: |
           sudo npm -g config set prefix /opt/homebrew
           npm i -gf @ionic/cli@6.14.1
+      - name: apple commandline
+        script: |
+          xcode-select --install
+      - name: brew install pkg-config 
+        script: |
+          arch -arm64 brew install pkg-config cairo pango libpng jpeg giflib librsvg
       - name: ionic version
         script: |
           ionic --version
-
       # - name: Install npm dependencies and update Cordova version
       #   script: | 
       #     # npm install
