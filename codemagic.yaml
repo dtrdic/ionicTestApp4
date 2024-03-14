@@ -16,6 +16,7 @@ workflows:
         - firebase_credentials_admin
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
+      xcode: 15
     cache:
       cache_paths:
         - /opt/homebrew/Cellar/librsvg/
@@ -36,9 +37,9 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      - name: apple commandline
-        script: |
-          brew install --ignore-dependencies xcode-select
+      # - name: apple commandline
+      #   script: |
+      #     brew install --ignore-dependencies xcode-select
       - name: Install ionic/cli@6.14.1
         script: |
           sudo npm -g config set prefix /opt/homebrew
