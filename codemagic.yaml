@@ -37,9 +37,10 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      # - name: apple commandline
-      #   script: |
-      #     brew install --ignore-dependencies xcode-select
+      - name: apple commandline
+        script: |
+          xcode-select --install
+          brew upgrade python
       - name: Install ionic/cli@6.14.1
         script: |
           sudo npm -g config set prefix /opt/homebrew
