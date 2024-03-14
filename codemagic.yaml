@@ -40,7 +40,7 @@ workflows:
       - name: apple commandline
         script: |
           xcode-select --install
-          brew upgrade python
+          brew upgrade python3
       - name: Install ionic/cli@6.14.1
         script: |
           sudo npm -g config set prefix /opt/homebrew
