@@ -39,7 +39,10 @@ workflows:
     scripts:
       - name: python@3.12
         script: |
-          brew install python@3.12
+          xcode-select -p
+          python3 --version
+
+          brew install python@3.13
       - name: Install ionic/cli@6.14.1
         script: |
           sudo npm -g config set prefix /opt/homebrew
