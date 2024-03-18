@@ -37,19 +37,19 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      - name: python@3.12
-        script: |
-          xcode-select -p
-          python3 --version
+      # - name: python@3.12
+      #   script: |
+      #     xcode-select -p
+      #     python3 --version
 
-          #brew install python@3.12
-      - name: Install ionic/cli@6.14.1
-        script: |
-          sudo npm -g config set prefix /opt/homebrew
-          npm i -gf @ionic/cli@6.14.1
-      - name: brew install pkg-config 
-        script: |
-          arch -arm64 brew install pkg-config cairo pango libpng jpeg giflib librsvg
+      #     #brew install python@3.12
+      # - name: Install ionic/cli@6.14.1
+      #   script: |
+      #     sudo npm -g config set prefix /opt/homebrew
+      #     npm i -gf @ionic/cli@6.14.1
+      # - name: brew install pkg-config 
+      #   script: |
+      #     arch -arm64 brew install pkg-config cairo pango libpng jpeg giflib librsvg
       - name: ionic version
         script: |
           ionic --version
@@ -65,8 +65,7 @@ workflows:
           npm install
       - name: Run build
         script: |
-          CI=false npm run build
-          #npm run build
+          npm run build
       - name: Set up local.properties
         script: | 
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
