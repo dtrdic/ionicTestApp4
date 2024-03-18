@@ -26,7 +26,7 @@ android {
     compileSdkVersion 34 //rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "io.codemagic.dtrdic8"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 34 //rootProject.ext.minSdkVersion
         targetSdkVersion 34 //rootProject.ext.targetSdkVersion
         versionCode latestGooglePlayBuildNumber + 1
         versionName "1.0." + String.valueOf(latestGooglePlayBuildNumber + 1)
