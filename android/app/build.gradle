@@ -23,11 +23,11 @@ if (keystorePropertiesFile.exists()) {
 
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 34 //rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "io.codemagic.dtrdic8"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        targetSdkVersion 34 //rootProject.ext.targetSdkVersion
         versionCode latestGooglePlayBuildNumber + 1
         versionName "1.0." + String.valueOf(latestGooglePlayBuildNumber + 1)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
