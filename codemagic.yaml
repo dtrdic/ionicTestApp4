@@ -2,7 +2,7 @@ workflows:
   ionic-capacitor-android-workflow:
     name: Ionic Android Workflow
     max_build_duration: 120
-    instance_type: linux_x2
+    instance_type: mac_mini_m1
     environment:
       android_signing:
         - davidKeystore
@@ -16,7 +16,6 @@ workflows:
         - firebase_credentials_admin
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
-      xcode: 14.2
     cache:
       cache_paths:
         - /opt/homebrew/Cellar/librsvg/
