@@ -37,9 +37,9 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      - name: code-select --install
-        script: |
-          xcode-select --install
+      # - name: code-select --install
+      #   script: |
+      #     xcode-select --install
       - name: Install ionic/cli@6.14.1
         script: |
           sudo npm -g config set prefix /opt/homebrew
