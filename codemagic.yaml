@@ -37,15 +37,15 @@ workflows:
       - pattern: 'main'
         include: true
     scripts:
-      - name: sdkmanager --version
-        script: | 
-          sdkmanager --version
+      # - name: sdkmanager --version
+      #   script: | 
+      #     sdkmanager --version
       - name: sdkmanager update
         script: |
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --update
-      - name: sdkmanager --version
-        script: | 
-          sdkmanager --version
+      # - name: sdkmanager --version
+      #   script: | 
+      #     sdkmanager --version
       - name: Install npm dependencies for Ionic project 
         script: |
           npm install
