@@ -20,14 +20,6 @@ workflows:
         - firebase_credentials_admin
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
-    cache:
-      cache_paths:
-        - /opt/homebrew/Cellar/librsvg/
-        - /opt/homebrew/Cellar/giflib/
-        - /opt/homebrew/Cellar/jpeg/
-        - /opt/homebrew/Cellar/libpng/
-        - /opt/homebrew/Cellar/pango/
-        - /opt/homebrew/Cellar/cairo/
     triggering:
       events:
           # - pull_request #test1teestmain
@@ -43,9 +35,9 @@ workflows:
       # - name: sdkmanager --version
       #   script: | 
       #     sdkmanager --version
-      - name: sdkmanager update
-        script: |
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --update
+      # - name: sdkmanager update
+      #   script: |
+      #     $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --update
       # - name: sdkmanager --version
       #   script: | 
       #     sdkmanager --version
