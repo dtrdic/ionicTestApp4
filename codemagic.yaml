@@ -2,8 +2,9 @@ workflows:
   ionic-capacitor-android-workflow:
     name: Ionic Android Workflow
     max_build_duration: 120
-    instance_type: linux_x2
+    instance_type: linux
     environment:
+      #java: 17
       #xcode: 15.3
       node: 20.11.1
       npm: 10.2.4
@@ -121,11 +122,11 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: YourAPIkey
+      app_store_connect: DavidAPIkey
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.b1.ramadaplazabywyndhamizmir
+        bundle_identifier: io.codemagic.dtrdic8
       groups:
         - firebase_credentials
       vars:
