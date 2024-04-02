@@ -6,8 +6,8 @@ workflows:
     environment:
       #java: 17
       #xcode: 15.3
-      node: 20.11.1
-      npm: 10.2.4
+      node: 19.9.0
+      npm: 9.6.3
       android_signing:
         - davidKeystore
       groups:
