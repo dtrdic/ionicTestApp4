@@ -49,7 +49,7 @@ workflows:
           dd if=/dev/urandom of=sample.txt bs=8M count=1
       - name: Upload to S3
         script: |
-          aws cp file S3://dtrdic-bucket
+          aws cp sample.txt S3://dtrdic-bucket
       - name: Create a random file2
         script: |
           dd if=/dev/urandom of=sample2.txt bs=8M count=1
