@@ -44,21 +44,21 @@ workflows:
       - name: aws cli install
         script: |
           sudo pip3 install awscli --upgrade
-      - name: Create a random file
+      - name: Create a random 50MB file 
         script: |
-          dd if=/dev/urandom of=sample4.txt bs=80M count=1
+          dd if=/dev/urandom of=sample1.txt bs=8M count=7
       - name: Upload to S3
         script: |
-          aws s3 cp sample4.txt s3://dtrdic-bucket/
-      - name: Create a random file2
+          aws s3 cp sample1.txt s3://dtrdic-bucket/
+      - name: Create a random 50MB file2
         script: |
-          dd if=/dev/urandom of=sample5.txt bs=80M count=1
+          dd if=/dev/urandom of=sample2.txt bs=8M count=7
       - name: Disable TCP Segmentation Offload 
         script: |
           sudo sysctl net.inet.tcp.tso=0
       - name: Upload to S3
         script: |
-          aws s3 cp sample5.txt s3://dtrdic-bucket/
+          aws s3 cp sample2.txt s3://dtrdic-bucket/
 
       - name: Install npm dependencies for Ionic project 
         script: |
