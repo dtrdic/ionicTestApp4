@@ -2,12 +2,12 @@ workflows:
   ionic-capacitor-android-workflow:
     name: Ionic Android Workflow
     max_build_duration: 120
-    instance_type: linux
+    instance_type: mac_mini_m1
     environment:
+      # node: 19.9.0
+      # npm: 9.6.3
       #java: 17
       #xcode: 15.3
-      node: 19.9.0
-      npm: 9.6.3
       android_signing:
         - davidKeystore
       groups:
@@ -41,6 +41,25 @@ workflows:
       # - name: sdkmanager --version
       #   script: | 
       #     sdkmanager --version
+      # - name: aws cli install
+      #   script: |
+      #     sudo pip3 install awscli --upgrade
+      - name: Create a random file
+        script: |
+          dd if=/dev/urandom of=sample.txt bs=8M count=1
+      - name: Upload to S3
+        script: |
+          aws cp file S3://dtrdic-bucket
+      - name: Create a random file2
+        script: |
+          dd if=/dev/urandom of=sample2.txt bs=8M count=1
+      - name: Disable TCP Segmentation Offload 
+        script: |
+          sudo sysctl net.inet.tcp.tso=0
+      - name: Upload to S3
+        script: |
+          aws cp file S3://dtrdic-bucket
+
       - name: Install npm dependencies for Ionic project 
         script: |
           npm install
@@ -78,22 +97,21 @@ workflows:
         firebase_service_account: $FIREBASE_SERVICE_ACCOUNT_APP_DISTRIBUTION_ADMIN
         android:
           app_id: 1:701760780130:android:0d47604cb2123e95f09e3b
-      # google_play:
-      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-      #   track: internal
-      #   submit_as_draft: true
-        # - name: Build finished successfully 
-        #   script: touch ~/SUCCESS
-        # - name: Push git tags
-        #   script: | 
-        #     if [  -f ~/SUCCESS ] ; then
-        #       echo "is succesfull"
-        #       new_version=v1.0.$BUILD_NUMBER
-        #       git tag $new_version
-        #       git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
-        #     else
-        #       echo "is failed"
-        #     fi
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        submit_as_draft: true
+      # scripts:
+      #   - name: Push git tags
+      #     script: | 
+      #       if [  -f ~/SUCCESS ] ; then
+      #         echo "is succesfull"
+      #         new_version=v1.0.$BUILD_NUMBER
+      #         git tag $new_version
+      #         git push "https://x-access-token:$GITHUB_TOKEN@github.com/dtrdic/ionicTestApp4.git" --tags
+      #       else
+      #         echo "is failed"
+      #       fi
         # - name: Check distribution status
         #   script: | 
         #     PUBLISHING_STATUS=$(curl -H "Content-Type: application/json" \
