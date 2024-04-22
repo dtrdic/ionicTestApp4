@@ -41,9 +41,9 @@ workflows:
       # - name: sdkmanager --version
       #   script: | 
       #     sdkmanager --version
-      # - name: aws cli install
-      #   script: |
-      #     sudo pip3 install awscli --upgrade
+      - name: aws cli install
+        script: |
+          sudo pip3 install awscli --upgrade
       - name: Create a random file
         script: |
           dd if=/dev/urandom of=sample.txt bs=8M count=1
