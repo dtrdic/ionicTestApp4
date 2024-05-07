@@ -41,24 +41,7 @@ workflows:
       # - name: sdkmanager --version
       #   script: | 
       #     sdkmanager --version
-      - name: aws cli install
-        script: |
-          sudo pip3 install awscli --upgrade
-      - name: Create a random 50MB file 
-        script: |
-          dd if=/dev/urandom of=sample1.txt bs=8M count=7
-      - name: Upload to S3
-        script: |
-          aws s3 cp sample1.txt s3://dtrdic-bucket/
-      - name: Create a random 50MB file2
-        script: |
-          dd if=/dev/urandom of=sample2.txt bs=8M count=7
-      - name: Disable TCP Segmentation Offload 
-        script: |
-          sudo sysctl net.inet.tcp.tso=0
-      - name: Upload to S3
-        script: |
-          aws s3 cp sample2.txt s3://dtrdic-bucket/
+
 
       - name: Install npm dependencies for Ionic project 
         script: |
@@ -130,10 +113,14 @@ workflows:
   ionic-capacitor-ios-workflow:
     name: ionic iOS Workflow
     max_build_duration: 120
-    instance_type: mac_mini_m2
+    instance_type: mac_mini_m1
     integrations:
       app_store_connect: DavidAPIkey
     environment:
+      node: 16.20.2
+      npm: 8.5.0
+      xcode: 15.3
+      cocoapods: 1.15.0
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.dtrdic8
