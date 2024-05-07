@@ -40,7 +40,7 @@ workflows:
       #     $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --update
       # - name: sdkmanager --version
       #   script: | 
-      #     sdkmanager --version
+      #     sdkmanager --version 
       - name: aws cli install
         script: |
           sudo pip3 install awscli --upgrade
