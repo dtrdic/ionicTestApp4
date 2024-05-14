@@ -155,12 +155,15 @@ workflows:
           agvtool new-version -all 1.0.$(($PROJECT_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: |
-          xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME" \
-            --archive-flags="-destination 'generic/platform=iOS'" 
-            # \
-            # --archive-xcargs "CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=NO"
+            xcodebuild archive -workspace "ios/App/App.xcworkspace" -scheme "App" -destination generic/platform=iOS -archivePath ./build/ionic4.xcarchive
+
+            xcodebuild -exportArchive -archivePath ./build/ionic4.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build
+
+
+          # xcode-project build-ipa \
+            # --workspace "$XCODE_WORKSPACE" \
+            # --scheme "$XCODE_SCHEME" \
+            # --archive-flags="-destination 'generic/platform=iOS'" 
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
