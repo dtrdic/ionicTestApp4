@@ -157,7 +157,7 @@ workflows:
         script: |
             xcodebuild archive -workspace "ios/App/App.xcworkspace" -scheme "App" -destination generic/platform=iOS -archivePath ./build/ionic4.xcarchive
 
-            xcodebuild -exportArchive -archivePath ./build/ionic4.xcarchive -exportOptionsPlist exportOptions.plist -exportPath "ios/App" 
+            xcodebuild -exportArchive -archivePath ./build/ionic4.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build
 
 
           # xcode-project build-ipa \
