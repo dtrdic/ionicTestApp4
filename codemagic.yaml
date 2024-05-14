@@ -155,9 +155,9 @@ workflows:
           agvtool new-version -all 1.0.$(($PROJECT_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: |
-            xcodebuild archive -workspace "ios/App/App.xcworkspace" -scheme "App" -destination generic/platform=iOS -archivePath $PYENV_DIR/ionic4.xcarchive
+            xcodebuild archive -workspace "ios/App/App.xcworkspace" -scheme "App" -destination generic/platform=iOS -archivePath "$PYENV_DIR/ionic4.xcarchive"
 
-            xcodebuild -exportArchive -archivePath $PYENV_DIR/ionic4.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PYENV_DIR
+            xcodebuild -exportArchive -archivePath "$PYENV_DIR/ionic4.xcarchive" -exportOptionsPlist exportOptions.plist -exportPath "$PYENV_DIR"
 
 
           # xcode-project build-ipa \
