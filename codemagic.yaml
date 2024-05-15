@@ -121,25 +121,25 @@ workflows:
         XCODE_SCHEME: "App"
         BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
-      # - name: yarn global add detox-cli
-      #   script: |
-      #     npm install -g typescript
-      #     # brew tap wix/brew
-      #     brew install applesimutils
-      #     yarn global add detox-cli
-      # - name: yarn install
-      #   script: |
-      #     yarn install
-      # - name: keychain initialize
-      #   script: | 
-      #     keychain initialize
-      - name: dart pub global activate melos
+      - name: yarn global add detox-cli
         script: |
-         # dart pub global activate melos
           export HOMEBREW_NO_INSTALL_CLEANUP=1
-          brew tap CQLabs/dcm
-          brew install dcm@1.16.2
-          dcm --version
+          brew tap wix/brew
+          brew install applesimutils
+          yarn global add detox-cli
+      - name: yarn install
+        script: |
+          yarn install
+      - name: keychain initialize
+        script: | 
+          keychain initialize
+      # - name: dart pub global activate melos
+      #   script: |
+      #    # dart pub global activate melos
+      #     export HOMEBREW_NO_INSTALL_CLEANUP=1
+      #     brew tap CQLabs/dcm
+      #     brew install dcm@1.16.2
+      #     dcm --version
       # - name: melos bs
       #   script: |
       #     melos bs
