@@ -109,6 +109,7 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
+      cocoapods: 1.14.2
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.dtrdic8
@@ -122,6 +123,9 @@ workflows:
     scripts:
       - name: yarn global add detox-cli
         script: |
+          npm install -g typescript
+          brew tap wix/brew
+          brew install applesimutils
           yarn global add detox-cli
       - name: yarn install
         script: |
