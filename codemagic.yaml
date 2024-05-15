@@ -135,8 +135,8 @@ workflows:
       #     keychain initialize
       - name: dart pub global activate melos
         script: |
-          dart pub global activate melos
-          brew tap CQLabs/dcm
+         # dart pub global activate melos
+         # brew tap CQLabs/dcm
           brew install dcm@1.16.2
           dcm --version
       # - name: melos bs
