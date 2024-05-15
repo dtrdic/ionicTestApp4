@@ -123,10 +123,8 @@ workflows:
     scripts:
       - name: yarn global add detox-cli
         script: |
-          export HOMEBREW_NO_INSTALL_CLEANUP=1
-          brew tap wix/brew
-          brew install applesimutils
-          yarn global add detox-cli
+         # export HOMEBREW_NO_INSTALL_CLEANUP=1
+          brew instal coreutils
       - name: yarn install
         script: |
           yarn install
