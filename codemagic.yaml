@@ -43,18 +43,10 @@ workflows:
       #     sdkmanager --version
 
 
-      - name: Install npm dependencies for Ionic project 
-        script: |
-          npm install
-      - name: Run build
-        script: |
-          npm run build
+
       - name: Set up local.properties
         script: | 
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
-      - name: Update dependencies and copy web assets to native project
-        script: | 
-          npx cap sync
       - name: Build Android release 
         script: | 
           LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
@@ -117,10 +109,6 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
-      node: 16.20.2
-      npm: 8.5.0
-      xcode: 15.3
-      cocoapods: 1.15.0
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.dtrdic8
@@ -132,9 +120,15 @@ workflows:
         XCODE_SCHEME: "App"
         BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
-      - name: Install npm dependencies for Ionic project
+      - name: yarn global add detox-cli
         script: |
-          npm install
+          yarn global add detox-cli
+      - name: yarn install
+        script: |
+          yarn install
+      - name: keychain initialize
+        script: | 
+          keychain initialize
       - name: Cocoapods installation
         script: |
           cd ios/App && pod install
