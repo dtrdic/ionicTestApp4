@@ -121,13 +121,11 @@ workflows:
         XCODE_SCHEME: "App"
         BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
-      - name: yarn global add detox-cli
+      - name: brew
         script: |
-          export HOMEBREW_NO_INSTALL_CLEANUP=1
-          brew instal coreutils
-      # - name: yarn install
-      #   script: |
-      #     yarn install
+          #export HOMEBREW_NO_INSTALL_CLEANUP=1
+          #brew instal coreutils
+          brew bundle install --file="$CM_BUILD_DIR/CICD_Support/Brewfile"
       - name: keychain initialize
         script: | 
           keychain initialize
