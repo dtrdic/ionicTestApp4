@@ -139,9 +139,9 @@ workflows:
           brew tap CQLabs/dcm
           brew install dcm@1.16.2
           dcm --version
-      - name: dart pub global activate melos
-        script: |
-          melos bs
+      # - name: melos bs
+      #   script: |
+      #     melos bs
       - name: xcode-project use-profiles
         script: |
           xcode-project use-profiles
