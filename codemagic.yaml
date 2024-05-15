@@ -136,7 +136,7 @@ workflows:
       - name: dart pub global activate melos
         script: |
          # dart pub global activate melos
-          HOMEBREW_NO_INSTALL_CLEANUP
+          export HOMEBREW_NO_INSTALL_CLEANUP=1
           brew tap CQLabs/dcm
           brew install dcm@1.16.2
           dcm --version
