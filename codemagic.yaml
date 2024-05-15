@@ -123,11 +123,11 @@ workflows:
     scripts:
       - name: yarn global add detox-cli
         script: |
-         # export HOMEBREW_NO_INSTALL_CLEANUP=1
+          export HOMEBREW_NO_INSTALL_CLEANUP=1
           brew instal coreutils
-      - name: yarn install
-        script: |
-          yarn install
+      # - name: yarn install
+      #   script: |
+      #     yarn install
       - name: keychain initialize
         script: | 
           keychain initialize
