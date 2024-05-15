@@ -121,21 +121,30 @@ workflows:
         XCODE_SCHEME: "App"
         BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
-      - name: yarn global add detox-cli
+      # - name: yarn global add detox-cli
+      #   script: |
+      #     npm install -g typescript
+      #     # brew tap wix/brew
+      #     brew install applesimutils
+      #     yarn global add detox-cli
+      # - name: yarn install
+      #   script: |
+      #     yarn install
+      # - name: keychain initialize
+      #   script: | 
+      #     keychain initialize
+      - name: dart pub global activate melos
         script: |
-          npm install -g typescript
-          # brew tap wix/brew
-          brew install applesimutils
-          yarn global add detox-cli
-      - name: yarn install
+          dart pub global activate melos
+          brew tap CQLabs/dcm
+          brew install dcm@1.16.2
+          dcm --version
+      - name: dart pub global activate melos
         script: |
-          yarn install
-      - name: keychain initialize
-        script: | 
-          keychain initialize
-      - name: Cocoapods installation
+          melos bs
+      - name: xcode-project use-profiles
         script: |
-          cd ios/App && pod install
+          xcode-project use-profiles
       - name: Update dependencies and copy web assets to native project
         script: |
           # npx cap copy # <- use this is you don't need to update native dependencies
