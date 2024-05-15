@@ -123,7 +123,7 @@ workflows:
     scripts:
       - name: yarn global add detox-cli
         script: |
-          yarn install -g typescript
+          # npm install -g typescript
           brew tap wix/brew
           brew install applesimutils
           yarn global add detox-cli
