@@ -109,7 +109,7 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
-      xcode: 15.2
+      xcode: 15.1
     #  cocoapods: 1.14.2
       ios_signing:
         distribution_type: app_store
