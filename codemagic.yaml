@@ -109,6 +109,7 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
+      xcode: 15.2
     #  cocoapods: 1.14.2
       ios_signing:
         distribution_type: app_store
@@ -124,7 +125,7 @@ workflows:
       - name: brew
         script: |
          # export HOMEBREW_NO_INSTALL_CLEANUP=1 
-          brew install --cask fvim
+          brew install applesimutils
         # brew tap leoafarias/fvm
       - name: keychain initialize
         script: | 
