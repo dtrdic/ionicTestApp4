@@ -124,7 +124,7 @@ workflows:
       - name: brew
         script: |
          # export HOMEBREW_NO_INSTALL_CLEANUP=1 
-          brew install fvm 
+          brew install --cask fvim
         # brew tap leoafarias/fvm
       - name: keychain initialize
         script: | 
