@@ -123,9 +123,10 @@ workflows:
     scripts:
       - name: brew
         script: |
-          #export HOMEBREW_NO_INSTALL_CLEANUP=1
-          #brew instal coreutils
-          brew bundle install --file="$CM_BUILD_DIR/CICD_Support/Brewfile"
+          export HOMEBREW_NO_INSTALL_CLEANUP=1 
+          brew tap leoafarias/fvm
+          brew install fvm
+          make setup
       - name: keychain initialize
         script: | 
           keychain initialize
