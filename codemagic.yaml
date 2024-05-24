@@ -24,7 +24,7 @@ workflows:
       events:
           - pull_request #test1teestmain22c
           # - tag
-          #- push
+          - push
       branch_patterns:
       - pattern: "main"
         include: true
