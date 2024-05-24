@@ -24,10 +24,11 @@ workflows:
       events:
           - pull_request #test1teestmain2
           # - tag
-          #- push
+          - push
       branch_patterns:
       - pattern: 'main'
         include: true
+        source: true
     when:
       condition: event.ref == 'refs/heads/main'
     scripts:
