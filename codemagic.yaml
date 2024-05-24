@@ -22,7 +22,7 @@ workflows:
         PACKAGE_NAME: "io.codemagic.dtrdic8" 
     triggering:
       events:
-          - pull_request #test1teestmain22c
+          - pull_request #test1teestmain22c3
           # - tag
           - push
       branch_patterns:
