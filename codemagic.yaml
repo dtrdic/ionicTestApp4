@@ -117,10 +117,10 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
-      node: 16.20.2
-      npm: 8.5.0
-      xcode: 15.3
-      cocoapods: 1.15.0
+      # node: 16.20.2
+      # npm: 8.5.0
+      # xcode: 15.3
+      # cocoapods: 1.15.0
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.dtrdic8
@@ -132,6 +132,20 @@ workflows:
         XCODE_SCHEME: "App"
         BUNDLE_ID: "io.codemagic.dtrdic8"
     scripts:
+      - name: Install Capacitor CLI
+        script: npm install -g @capacitor/cli
+      - name: Sync Capacitor
+        script: npx cap sync ios
+
+      - name: Build iOS
+        script: |
+          cd ios
+          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release clean archive -archivePath ${{BUILD_DIR}}/App.xcarchive
+
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive -archivePath ${{BUILD_DIR}}/App.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath ${{BUILD_DIR}}
+
       - name: Install npm dependencies for Ionic project
         script: |
           npm install
